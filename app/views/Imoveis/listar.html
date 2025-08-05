@@ -1,0 +1,43 @@
+#{extends 'main.html' /}
+#{set title:'Listagem de Imóveis' /}
+
+<h1 class="text-center mt-5 text-danger">Lista de Imóveis</h1>
+<div class="search-label-container">
+    <label for="termo">Buscar por bairro ou código do anúncio:</label>
+</div>
+
+<div class="search-container">
+    <form action="@{Imoveis.listar}" class="search-form-inside">
+        <input 
+          id="termo"
+          type="text" 
+          name="termo" 
+          value="${termo}" 
+          placeholder="Digite o bairro ou código" 
+          class="search-input" />
+        <button type="submit" class="search-button">Buscar</button>
+    </form>
+</div>
+
+<div class="user-cards-container">
+    #{list items: imoveis, as:'i'}
+      <div class="user-card">
+        <p><strong>Código do Anúncio:</strong> ${i.codigoAnuncio}</p>
+        <p><strong>Bairro:</strong> ${i.bairro}</p>
+        <p><strong>Área Total:</strong> ${i.areaTotal()} m²</p>
+        <p><strong>Tipo de Imóvel:</strong> ${i.tipoImovel.descricao}</p>
+        <div class="button-group">
+          <a href="@{Imoveis.detalhar(i.id)}" class="action-button">Detalhar</a>
+          <a href="@{Imoveis.editar(i.id)}" class="action-button">Editar</a>
+          <a href="@{Imoveis.remover(i.id)}" class="action-button" onclick="return confirm('Tem certeza que deseja remover?')">Remover</a>
+        </div>
+      </div>
+    #{/list}
+    #{else}
+      <p class="no-users">Nenhum Imóvel Cadastrado</p>
+    #{/else}
+</div>
+
+<div style="text-align: center; margin-top: 2rem;">
+  <a href="@{Imoveis.form}" class="action-button">Cadastrar Novo Imóvel</a>
+</div>

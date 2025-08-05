@@ -1,0 +1,52 @@
+#{extends 'main.html' /}
+#{set title:'Detalhes do Imóvel' /}
+
+<div class="container my-5">
+    <div class="card text-light bg-dark" style="border: none; border-radius: 15px;">
+        <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h3 class="card-title mb-0 text-warning">Detalhes do Imóvel</h3>
+            </div>
+            
+            <p class="fs-5">
+                <strong class="text-warning">Código do Anúncio:</strong> 
+                <span class="text-white">${imovel.codigoAnuncio}</span>
+            </p>
+            <p class="fs-5">
+                <strong class="text-warning">Bairro:</strong> 
+                <span class="text-white">${imovel.bairro}</span>
+            </p>
+            <p class="fs-5">
+                <strong class="text-warning">Quantidade de Cômodos:</strong> 
+                <span class="text-white">${imovel.quantidadeComodos}</span>
+            </p>
+            <p class="fs-5">
+                <strong class="text-warning">Área Interna:</strong> 
+                <span class="text-white">${imovel.areaInterna} m²</span>
+            </p>
+            <p class="fs-5">
+                <strong class="text-warning">Área Externa:</strong> 
+                <span class="text-white">${imovel.areaExterna} m²</span>
+            </p>
+            <p class="fs-5">
+                <strong class="text-warning">Área Total:</strong> 
+                <span class="text-white">${imovel.areaTotal()} m²</span>
+            </p>
+            <p class="fs-5">
+                <strong class="text-warning">Tipo de Imóvel:</strong> 
+                <span class="text-white">${imovel.tipoImovel.descricao}</span>
+            </p>
+            
+            <hr class="bg-warning">
+
+            <div class="mt-4 d-flex gap-3">
+                <a class="btn btn-warning" href="@{Imoveis.form}">
+                    <i class="fas fa-plus"></i> Cadastrar Novo Imóvel
+                </a>
+                <a class="btn btn-outline-warning" href="@{Imoveis.listar}">
+                    <i class="fas fa-list"></i> Listagem
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

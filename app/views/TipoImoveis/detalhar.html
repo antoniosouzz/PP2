@@ -1,0 +1,39 @@
+#{extends 'main.html' /}
+#{set title:'Listagem de Tipos de Imóveis' /}
+
+<h1 class="text-center mt-5 text-warning" style="text-shadow: 1px 1px 4px #000;">Lista de Tipos de Imóveis</h1>
+<div class="search-label-container text-white">
+    <label for="termo">Buscar por descrição:</label>
+</div>
+
+<div class="search-container">
+    <form action="@{TipoImoveis.listar}" class="search-form-inside">
+        <input 
+          id="termo"
+          type="text" 
+          name="termo" 
+          value="${termo}" 
+          placeholder="Digite a descrição" 
+          class="search-input" />
+        <button type="submit" class="search-button">Buscar</button>
+    </form>
+</div>
+
+<div class="user-cards-container">
+    #{list items: tiposImoveis, as:'tipo'}
+      <div class="user-card bg-dark text-white p-4 rounded-3 shadow">
+        <p class="fs-5 mb-2"><strong>Descrição:</strong> ${tipo.descricao}</p>
+        <div class="button-group mt-3 d-flex justify-content-end">
+          <a href="@{TipoImoveis.editar(tipo.id)}" class="btn btn-warning me-2">Editar</a>
+          <a href="@{TipoImoveis.remover(tipo.id)}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja remover?')">Remover</a>
+        </div>
+      </div>
+    #{/list}
+    #{else}
+      <p class="no-users text-white">Nenhum Tipo de Imóvel Cadastrado</p>
+    #{/else}
+</div>
+
+<div style="text-align: center; margin-top: 2rem;">
+  <a href="@{TipoImoveis.form}" class="action-button">Cadastrar Novo Tipo</a>
+</div>
